@@ -1,6 +1,6 @@
-class Army < ActiveRecord::Base
-
-
-
-  
-end
+# class Army < ActiveRecord::Base
+#
+#
+#
+#
+# end
