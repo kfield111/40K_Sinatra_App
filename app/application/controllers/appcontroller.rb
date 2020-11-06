@@ -8,7 +8,11 @@ class AppController < Sinatra::Base
   end
 
   get '/signup' do
-    erb :signup
+    erb :"/registration/signup"
+  end
+
+  post '/signup' do
+    erb :"/user/user_home"
   end
 
 end
