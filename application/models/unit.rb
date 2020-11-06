@@ -1,6 +1,6 @@
-# class Unit < ActiveRecord::Base
-#
-#
-#
-#
-# end
+class Unit < ActiveRecord::Base
+
+
+
+
+end
