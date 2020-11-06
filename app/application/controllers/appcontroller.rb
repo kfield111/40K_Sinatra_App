@@ -12,6 +12,8 @@ class AppController < Sinatra::Base
   end
 
   post '/signup' do
+    @user = params[:username]
+    @password = params[:password]
     erb :"/user/user_home"
   end
 
