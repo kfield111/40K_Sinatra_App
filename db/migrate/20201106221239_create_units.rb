@@ -6,5 +6,6 @@ class CreateUnits < ActiveRecord::Migration[6.0]
       t.integer :model_count
       t.integer :user_id
       t.integer :army_id
+    end
   end
 end

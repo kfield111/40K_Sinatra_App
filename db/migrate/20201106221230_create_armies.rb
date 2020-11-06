@@ -5,5 +5,6 @@ class CreateArmies < ActiveRecord::Migration[6.0]
       t.string :faction
       t.integer :unit_count
       t.integer :user_id
+    end
   end
 end
