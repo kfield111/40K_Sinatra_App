@@ -15,18 +15,22 @@ class AppController < Sinatra::Base
 
 
   post '/signup' do
-    user = User.new(:username => params[:username], :password => params[:password])
-    if user.save && user.username != ""
-      session[:user_id] = user.id
-      erb :'/user/user_home'
-    else
+    if User.all.include? (params[:username])
       redirect '/signup'
+    else
+      user = User.new(:username => params[:username], :password => params[:password])
+      if user.save && user.username != ""
+        session[:user_id] = user.id
+        erb :'/test'
+      else
+        redirect '/signup'
+      end
     end
   end
 
   helpers do
     def current_user
-      User.find(session[:user_id])
+      User.find(session[:user_id]) if session[:user_id]
     end
 
     def is_logged_in?
