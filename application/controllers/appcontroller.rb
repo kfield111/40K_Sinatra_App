@@ -1,7 +1,9 @@
 class AppController < Sinatra::Base
 
-  set :session_secret, "Penguins_in_paradise"
-  set :views, Proc.new { File.join(root, "../views/") }
+  configure do
+    set :session_secret, "Penguins_in_paradise"
+    set :views, Proc.new { File.join(root, "../views/") }
+  end
 
   get '/' do
     erb :homepage
@@ -11,20 +13,25 @@ class AppController < Sinatra::Base
     erb :"/registration/signup"
   end
 
-  get '/login' do
-    erb :"/registration/login"
-  end
-
-  post '/login' do
-    @user = params[:username]
-    @password = params[:password]
-    erb :"/user/user_home"
-  end
 
   post '/signup' do
-    @user = params[:username]
-    @password = params[:password]
-    erb :"/user/user_home"
+    user = User.new(:username => params[:username], :password => params[:password])
+    if user.save && user.username != ""
+      session[:user_id] = user.id
+      erb :'/user/user_home'
+    else
+      redirect '/signup'
+    end
+  end
+
+  helpers do
+    def current_user
+      User.find(session[:user_id])
+    end
+
+    def is_logged_in?
+      !!session[:user_id]
+    end
   end
 
 end
