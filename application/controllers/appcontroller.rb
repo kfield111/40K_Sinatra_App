@@ -18,10 +18,10 @@ class AppController < Sinatra::Base
     if User.all.include? (params[:username])
       redirect '/signup'
     else
-      user = User.new(:username => params[:username], :password => params[:password])
-      if user.save && user.username != ""
-        session[:user_id] = user.id
-        erb :'/test'
+      @user = User.new(:username => params[:username], :password => params[:password])
+      if @user.save && @user.username != ""
+        session[:user_id] = @user.id
+        redirect "/users/#{@user.id}"
       else
         redirect '/signup'
       end
