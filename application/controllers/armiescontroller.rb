@@ -33,9 +33,19 @@ class ArmiesController < AppController
     erb :'armies/army_edit'
   end
 
+  patch '/armies/:id' do
+    @army = Army.find(params[:id])
+    @army.update(:army_name => params[:army_name], :faction => params[:faction], :army_point_cost => params[:army_point_cost])
+    redirect "/armies/#{@army.id}"
+  end
+
 
   #delete route
-
+  delete '/armies/:id/delete' do
+    @army = Army.find(params[:id])
+    @army.delete
+    redirect "/armies"
+  end
 
 
 end
