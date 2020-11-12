@@ -7,7 +7,9 @@ class ArmiesController < AppController
 
   post '/armies' do
     @army = Army.create(:army_name => params[:army_name], :faction => params[:faction], :army_point_cost => params[:army_point_cost])
-    @army.user_id = session[:user_id]
+    user = current_user
+    user.armies << @army
+    @army.user = user
     redirect "/armies/#{@army.id}"
   end
 

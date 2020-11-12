@@ -1,8 +1,14 @@
+require './config/environment'
+
+
 class AppController < Sinatra::Base
 
+
+
   configure do
+    enable :sessions
     set :session_secret, "Penguins_in_paradise"
-    set :views, Proc.new { File.join(root, "../views/") }
+    set :views, 'application/views'
   end
 
   get '/' do
@@ -10,7 +16,11 @@ class AppController < Sinatra::Base
   end
 
   get '/signup' do
-    erb :"/registration/signup"
+    if is_logged_in?
+      redirect "users/#{current_user.id}"
+    else
+      erb :"/registration/signup"
+    end
   end
 
 

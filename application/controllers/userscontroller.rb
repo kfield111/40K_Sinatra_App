@@ -2,14 +2,14 @@ class UsersController < AppController
 
   get '/login' do
     if is_logged_in?
-      erb :'users/user_home'
+      redirect "users/#{current_user.id}"
     else
       erb :'/users/login'
     end
   end
 
   post '/login' do
-    @user = User.find_by(:username => params[:username])
+    @user = User.find_by(username: params[:username])
     if @user && @user.authenticate(params[:password])
       session[:user_id] = @user.id
       redirect "/users/#{@user.id}"
