@@ -1,16 +1,13 @@
-<h1><% Army.all.each do |temp| %></h1>
   <label>Army Name:</label>
-  <%= "#{temp.army_name}" %>
+  <%= "#{@army.army_name}" %>
   <br>
   <label>Faction:</label>
-  <%= "#{temp.faction}" %>
+  <%= "#{@army.faction}" %>
   <br>
   <label>Unit Count:</label>
-  <%= "#{temp.unit_count}" %>
+  <%= "#{@army.unit_count}" %>
   <br>
   <label>Created By:</label>
-  <%= "#{temp.user_id}" %>
+  <%= "#{@army.user_id}" %>
   <br>
   <label>---------------------</label>
-  <br>
-<% end %>

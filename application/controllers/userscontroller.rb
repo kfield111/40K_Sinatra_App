@@ -2,9 +2,9 @@ class UsersController < AppController
 
   get '/login' do
     if is_logged_in?
-      erb :'user/user_home'
+      erb :'users/user_home'
     else
-      erb :"/user/login"
+      erb :'/users/login'
     end
   end
 
@@ -20,11 +20,12 @@ class UsersController < AppController
 
   get '/users/:id' do
     @user = User.find(params[:id])
-    erb :'/user/user_home'
+    erb :'/users/user_home'
   end
 
-  get 'logout' do
-    session[:user_id].clear
+  get '/logout' do
+    session.clear
+    erb :'/homepage'
   end
 
 end
