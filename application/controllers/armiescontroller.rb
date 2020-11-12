@@ -6,7 +6,7 @@ class ArmiesController < AppController
   end
 
   post '/armies' do
-    @army = Army.create(:army_name => params[:army_name], :faction => params[:faction], :unit_count => params[:unit_count])
+    @army = Army.create(:army_name => params[:army_name], :faction => params[:faction], :army_point_cost => params[:army_point_cost])
     @army.user_id = session[:user_id]
     redirect "/armies/#{@army.id}"
   end
@@ -27,10 +27,11 @@ class ArmiesController < AppController
     erb :'/armies/index'
   end
 
-
-
   #update route
-
+  get '/armies/:id/edit' do
+    @army = Army.find(params[:id])
+    erb :'armies/army_edit'
+  end
 
 
   #delete route

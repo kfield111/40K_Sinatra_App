@@ -1,0 +1,16 @@
+<h1>Edit Army</h1>
+
+<form method="post" action="/armies/<%= @army.id %>">
+  <input id="hidden" type="hidden" name="_method" value="patch">
+
+  <label>Army Name:</label>
+<input type="text" value="<%= @army.army_name%>" name="army_name">
+<br>
+<label>Faction:</label>
+<input type="text" value="<%= @army.faction %>" name="faction">
+<br>
+<label>Army Point Cost:</label>
+<input type="integer" value="<%= @army.army_point_cost %>" name="army_point_cost">
+<br>
+<input type="submit" value="Accept Changes">
+</form>

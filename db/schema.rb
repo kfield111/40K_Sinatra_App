@@ -10,12 +10,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_06_221239) do
+ActiveRecord::Schema.define(version: 2020_11_12_021400) do
 
   create_table "armies", force: :cascade do |t|
     t.string "army_name"
     t.string "faction"
-    t.integer "unit_count"
+    t.integer "army_point_cost"
     t.integer "user_id"
   end
 
