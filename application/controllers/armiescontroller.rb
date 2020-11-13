@@ -20,12 +20,8 @@ class ArmiesController < AppController
   end
 
   get '/armies' do
-    @armies = []
-    Army.all.each do |temp|
-      if temp.user_id == current_user
-        @armies << temp
-      end
-    end
+    @armies = current_user.armies
+    @user = current_user.id
     erb :'/armies/index'
   end
 

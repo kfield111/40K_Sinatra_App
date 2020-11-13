@@ -12,6 +12,10 @@
   <br>
   <label>---------------------</label>
   <br>
+  <br>
+    <a href="/armies/ <%= temp.id %>/edit">Edit</a>
+    <br>
+  <a href="/users/<%= @user %>">Return to User Page</a>
   <form method="post" action="/armies/<%= @army.id %>/delete">
     <input id="hidden" type="hidden" name="_method" value="Delete">
     <input type="submit" value="Delete This Army">
