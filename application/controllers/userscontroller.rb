@@ -18,9 +18,14 @@ class UsersController < AppController
     end
   end
 
+  #limit users from being able to use the URL to access another user page
   get '/users/:id' do
     @user = User.find(params[:id])
-    erb :'/users/user_home'
+    if !is_logged_in?
+      redirect "/login"
+    else
+      erb :'/users/user_home'
+    end
   end
 
   get '/logout' do

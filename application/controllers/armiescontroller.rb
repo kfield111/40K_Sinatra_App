@@ -16,6 +16,7 @@ class ArmiesController < AppController
   #read route
   get '/armies/:id' do
     @army = Army.find(params[:id])
+    @user = current_user.id
     erb :'/armies/show'
   end
 
