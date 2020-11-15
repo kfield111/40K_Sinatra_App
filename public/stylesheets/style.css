@@ -6,18 +6,42 @@
 .wrapper {
   margin: 0 auto;
   width 1000px;
+  color: black;
 }
 
 .header {
   width: 400px;
+  position: relative;
+  overflow: hidden;
 }
 
-.background {
-  width: 1000px;
-  height: 600px;
-  background-image: url("../img/web_background.png")
+.container {
+  position: relative;
+  text-align: center;
+  color: white;
 }
 
-.footer {
-  width: 300px;
+.top-left {
+  position: absolute;
+  top: 0px;
+  left: 0px;
 }
+
+.top-right {
+  position: absolute;
+  top: 8px;
+  right: 16px;
+}
+
+/*.background {
+  width: 1500px;
+  height: 700px;
+  background-image: url("../img/web_background.png");*/
+
+  /*filter: blur(8px);
+  -webkit-filter: blur(8px);*/
+/*
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}*/
