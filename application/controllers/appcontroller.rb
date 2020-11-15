@@ -9,6 +9,7 @@ class AppController < Sinatra::Base
     enable :sessions
     set :session_secret, "Penguins_in_paradise"
     set :views, 'application/views'
+    set :public_folder, "public"
   end
 
   get '/' do

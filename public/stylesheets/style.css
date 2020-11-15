@@ -1,0 +1,23 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.wrapper {
+  margin: 0 auto;
+  width 1000px;
+}
+
+.header {
+  width: 400px;
+}
+
+.background {
+  width: 1000px;
+  height: 600px;
+  background-image: url("../img/web_background.png")
+}
+
+.footer {
+  width: 300px;
+}

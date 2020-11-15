@@ -1,1 +1,1 @@
-user1 = User.create(username: "Field11", password_digest: "12345")
+# user1 = User.create(username: "Field11", password_digest: "12345")
