@@ -15,6 +15,20 @@
   <br>
     <a href="/armies/ <%= @army.id %>/edit">Edit</a>
     <br>
+    <div class="form-popup" id="add_unit">
+      <form action="/action_page.php" class="form-container">
+        <h2>Add A Unit</h2>
+
+      <label for="unit_name"><b>Unit Name</b></label>
+      <input type="text" placeholder="Enter Unit Name" name="unit_name" required>
+      <label for="faction"><b>Faction</b></label>
+      <input type="text" placeholder="Enter Faction" name="faction" required>
+
+      <button type="submit" class="btn">Add Unit</button>
+      <button type="submit" class="btn cancel" onclick="closeForm()">Close</button>
+    </form>
+    </div>
+    <br>
   <a href="/users/<%= @user %>">Return to User Page</a>
   <form method="post" action="/armies/<%= @army.id %>/delete">
     <input id="hidden" type="hidden" name="_method" value="Delete">
