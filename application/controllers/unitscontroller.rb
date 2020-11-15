@@ -1,6 +1,6 @@
-class ArmiesController < AppController
+class UnitsController < AppController
 
-  get '/action_page.php' do
+  get '/action_page' do
     @unit = Unit.create(:unit_name => params[:unit_name])
     user = current_user
     @army = Army.find_by(id: params[:army_id])
