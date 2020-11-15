@@ -15,6 +15,8 @@
   overflow: hidden;
 }
 
+.font { font-family: Blackletter;}
+
 .container {
   position: relative;
   text-align: center;

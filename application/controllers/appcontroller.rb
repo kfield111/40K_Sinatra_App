@@ -34,7 +34,7 @@ class AppController < Sinatra::Base
         session[:user_id] = @user.id
         redirect "/users/#{@user.id}"
       else
-        redirect '/signup'
+        erb :'/registration/existing_user_error'
       end
     end
   end
