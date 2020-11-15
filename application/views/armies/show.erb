@@ -12,6 +12,12 @@
   <br>
   <label>---------------------</label>
   <br>
+
+  <% @army.units.each do |temp| %>
+  <%= "#{temp.unit_name}" %>
+  <br>
+  <% end %>
+
   <br>
     <a href="/armies/ <%= @army.id %>/edit">Edit</a>
     <br>
@@ -23,6 +29,7 @@
       <input type="text" placeholder="Enter Unit Name" name="unit_name" required>
       <label for="faction"><b>Faction</b></label>
       <input type="text" placeholder="Enter Faction" name="faction" required>
+      <input id="hidden" type="hidden" name="army_id" value="<%= @army.id %>">
 
       <button type="submit" class="btn">Add Unit</button>
       <button type="submit" class="btn cancel" onclick="closeForm()">Close</button>
