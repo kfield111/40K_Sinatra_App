@@ -13,6 +13,8 @@
   <br>
   <label>---------------------</label>
   <br>
+  <a href="/armies/ <%= temp.id %>">View Army</a>
+  <br>
   <a href="/armies/ <%= temp.id %>/edit">Edit</a>
   <form method="post" action="/armies/<%= temp.id %>/delete">
     <input id="hidden" type="hidden" name="_method" value="Delete">

@@ -12,13 +12,8 @@
 <label>Army Point Cost:</label>
 <input type="integer" value="<%= @army.army_point_cost %>" name="army_point_cost">
 <br>
+<br>
+
 <input type="submit" value="Accept Changes">
+
 </form>
-
-<br>
-<h1>Units</h1>
-
-<% @army.units.each do |temp| %>
-<%= "#{temp.unit_name}" %>
-<br>
-<% end %>
