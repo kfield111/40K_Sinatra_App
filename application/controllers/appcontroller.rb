@@ -26,16 +26,12 @@ class AppController < Sinatra::Base
 
 
   post '/signup' do
-    if User.all.include? (params[:username])
-      redirect '/signup'
+    @user = User.new(:username => params[:username], :password => params[:password])
+    if @user.save && @user.username != ""
+      session[:user_id] = @user.id
+      redirect "/users/#{@user.id}"
     else
-      @user = User.new(:username => params[:username], :password => params[:password])
-      if @user.save && @user.username != ""
-        session[:user_id] = @user.id
-        redirect "/users/#{@user.id}"
-      else
-        erb :'/registration/existing_user_error'
-      end
+      erb :'/registration/existing_user_error'
     end
   end
 
@@ -45,7 +41,7 @@ class AppController < Sinatra::Base
     end
 
     def protected!
-      "You are trying to access another user's page.  Please logout and sign in as that user" unless '/users/:id' == session[:user_id]
+      "You are trying to access another user's page.  Please logout and sign in as that user" unless '/users/:id' == "#{session[:user_id]}"
     end
 
     def is_logged_in?
