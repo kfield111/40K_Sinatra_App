@@ -9,7 +9,7 @@ class UsersController < AppController
   end
 
   post '/login' do
-    @user = User.find_by_id(params[:id])
+    @user = User.find_by(:username => params[:username])
     if @user && @user.authenticate(params[:password])
       session[:user_id] = @user.id
       redirect "/users/#{@user.id}"
@@ -18,9 +18,7 @@ class UsersController < AppController
     end
   end
 
-  #limit users from being able to use the URL to access another user page
   get '/users/:id' do
-    @user = User.find(params[:id])
     if !is_logged_in?
       redirect "/login"
     else

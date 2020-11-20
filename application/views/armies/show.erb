@@ -35,11 +35,10 @@
       <input id="hidden" type="hidden" name="army_id" value="<%= @army.id %>">
 
       <button type="submit" class="btn">Add Unit</button>
-      <button type="submit" class="btn cancel" onclick="closeForm()">Close</button>
     </form>
     </div>
     <br>
-  <a href="/users/<%= @user %>">Return to User Page</a>
+  <a href="/users/<%= current_user.id %>">Return to User Page</a>
   <form method="post" action="/armies/<%= @army.id %>/delete">
     <input id="hidden" type="hidden" name="_method" value="Delete">
     <input type="submit" value="Delete This Army">

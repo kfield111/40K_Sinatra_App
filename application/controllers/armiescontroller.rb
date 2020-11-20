@@ -6,11 +6,10 @@ class ArmiesController < AppController
   end
 
   post '/armies' do
-    @army = Army.new(params[:army])
+    @army = Army.new(params)
+    @army.user_id = current_user.id
     if @army.save
       redirect "/armies/#{@army.id}"
-    else
-      erb :'/armies/army_create'
     end
   end
 
@@ -30,7 +29,7 @@ class ArmiesController < AppController
 
   #update route
   get '/armies/:id/edit' do
-    if is_logged_in? && my_amy?
+    if is_logged_in?
       set_army
       erb :'armies/army_edit'
     end
@@ -55,8 +54,7 @@ class ArmiesController < AppController
     end
 
     def my_army?
-      if set_army.user_id == current_user.id
-      end
+      set_army.user_id == current_user.id
     end
 
   end

@@ -11,7 +11,7 @@
   <label>Created By:</label>
   <%= "#{temp.user.username}" %>
   <br>
-  <label>---------------------</label>
+  ---------------------
   <br>
   <a href="/armies/ <%= temp.id %>">View Army</a>
   <br>
@@ -20,6 +20,7 @@
     <input id="hidden" type="hidden" name="_method" value="Delete">
     <input type="submit" value="Delete This Army">
   </form>
+  <br>
 <% end %>
 
   <a href="/users/<%= current_user.id %>">Return to User Page</a>
