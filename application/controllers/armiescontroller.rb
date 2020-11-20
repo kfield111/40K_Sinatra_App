@@ -8,7 +8,6 @@ class ArmiesController < AppController
   post '/armies' do
     @army = current_user.armies.new(:army_name => params[:army_name], :faction => params[:faction], :army_point_cost => params[:army_point_cost]) #utilize mass assignment
     if @army.save
-
       redirect "/armies/#{@army.id}"
     else
       erb :'/armies/army_create'
@@ -17,7 +16,7 @@ class ArmiesController < AppController
 
   #read route
   get '/armies/:id' do
-    @army = Army.find_by_id(params[:id])
+    set_army
     if @army.user_id == current_user.id
       erb :'/armies/show'
     else
@@ -26,15 +25,13 @@ class ArmiesController < AppController
   end
 
   get '/armies' do
-    @armies = current_user.armies
-    @user = current_user.id
     erb :'/armies/index'
   end
 
   #update route
   get '/armies/:id/edit' do
     #Is a user logged in?
-    @army = Army.find(params[:id]) #does this record exist?
+    set_army
     # does the logged in user own this record?
     erb :'armies/army_edit'
   end
@@ -51,6 +48,11 @@ class ArmiesController < AppController
     @army = Army.find(params[:id])
     @army.delete
     redirect "/armies"
+  end
+
+
+  def set_army
+    @army = Army.find_by_id(params[:id])
   end
 
 

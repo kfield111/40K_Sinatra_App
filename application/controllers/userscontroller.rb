@@ -21,7 +21,6 @@ class UsersController < AppController
   #limit users from being able to use the URL to access another user page
   get '/users/:id' do
     @user = User.find(params[:id])
-    protected!
     if !is_logged_in?
       redirect "/login"
     else

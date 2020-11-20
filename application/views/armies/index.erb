@@ -1,4 +1,4 @@
-<h1><% @armies.each do |temp| %></h1>
+<h1><% current_user.armies.each do |temp| %></h1>
   <label>Army Name:</label>
   <%= "#{temp.army_name}" %>
   <br>
@@ -22,4 +22,4 @@
   </form>
 <% end %>
 
-  <a href="/users/<%= @user %>">Return to User Page</a>
+  <a href="/users/<%= current_user.id %>">Return to User Page</a>
