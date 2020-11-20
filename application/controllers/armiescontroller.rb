@@ -6,7 +6,7 @@ class ArmiesController < AppController
   end
 
   post '/armies' do
-    @army = current_user.armies.new(:army_name => params[:army_name], :faction => params[:faction], :army_point_cost => params[:army_point_cost]) #utilize mass assignment
+    @army = Army.new(params[:army])
     if @army.save
       redirect "/armies/#{@army.id}"
     else
@@ -17,10 +17,10 @@ class ArmiesController < AppController
   #read route
   get '/armies/:id' do
     set_army
-    if @army.user_id == current_user.id
+    if is_logged_in? && my_army?
       erb :'/armies/show'
     else
-      erb :'/users/user_home'
+      erb :'not_authorized'
     end
   end
 
@@ -30,14 +30,14 @@ class ArmiesController < AppController
 
   #update route
   get '/armies/:id/edit' do
-    #Is a user logged in?
-    set_army
-    # does the logged in user own this record?
-    erb :'armies/army_edit'
+    if is_logged_in? && my_amy?
+      set_army
+      erb :'armies/army_edit'
+    end
   end
 
   patch '/armies/:id' do
-    @army = Army.find(params[:id])
+    set_army
     @army.update(:army_name => params[:army_name], :faction => params[:faction], :army_point_cost => params[:army_point_cost])
     redirect "/armies/#{@army.id}"
   end
@@ -45,14 +45,20 @@ class ArmiesController < AppController
 
   #delete route
   delete '/armies/:id/delete' do
-    @army = Army.find(params[:id])
-    @army.delete
+    set_army.delete
     redirect "/armies"
   end
 
+  helpers do
+    def set_army
+      @army = Army.find_by_id(params[:id])
+    end
 
-  def set_army
-    @army = Army.find_by_id(params[:id])
+    def my_army?
+      if set_army.user_id == current_user.id
+      end
+    end
+
   end
 
 

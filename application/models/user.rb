@@ -5,6 +5,7 @@ class User < ActiveRecord::Base
   has_many :units, through: :armies
 
   validates :username, :uniqueness => true
+  validates :username, :password, :presence => true
 
 
 end
