@@ -18,8 +18,8 @@ class ArmiesController < AppController
   #read route
   get '/armies/:id' do
     set_army
-    authorized?
-      erb :'/armies/show'
+    if authorized?
+      erb :'armies/show'
     else
       erb :'not_authorized'
     end
