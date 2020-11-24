@@ -31,7 +31,7 @@ class ArmiesController < AppController
 
   #update route
   get '/armies/:id/edit' do
-    if is_logged_in?
+    if is_logged_in? && my_army?
       set_army
       erb :'armies/army_edit'
     end
@@ -46,8 +46,11 @@ class ArmiesController < AppController
 
   #delete route
   delete '/armies/:id/delete' do
-    set_army.delete
-    redirect "/armies"
+    if is_logged_in? && my_army?
+      set_army.delete
+      redirect "/armies"
+    end
+      erb :'not_authorized'
   end
 
   helpers do
