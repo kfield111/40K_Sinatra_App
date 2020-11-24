@@ -41,7 +41,8 @@ class ArmiesController < AppController
 
   patch '/armies/:id' do
     set_army
-    @army.update(:army_name => params[:army_name], :faction => params[:faction], :army_point_cost => params[:army_point_cost])
+    params.delete(:_method)
+    @army.update(params)
     redirect "/armies/#{@army.id}"
   end
 
