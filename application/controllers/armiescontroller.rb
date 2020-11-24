@@ -49,8 +49,6 @@ class ArmiesController < AppController
     if is_logged_in? && my_army?
       set_army.delete
       redirect "/armies"
-    end
-      erb :'not_authorized'
   end
 
   helpers do
