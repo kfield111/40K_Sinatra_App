@@ -2,12 +2,15 @@ class ArmiesController < AppController
 
   #create route
   get '/armies/new' do
-    erb :'/armies/army_create'
+    if is_logged_in?
+      erb :'/armies/army_create'
+    else
+      redirect "/login"
+    end
   end
 
   post '/armies' do
-    @army = Army.new(params)
-    @army.user_id = current_user.id
+    @army = current_user.armies.new(params)
     if @army.save
       redirect "/armies/#{@army.id}"
     else
