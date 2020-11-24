@@ -18,7 +18,7 @@ class ArmiesController < AppController
   #read route
   get '/armies/:id' do
     set_army
-    if is_logged_in? && my_army?
+    if authorized?
       erb :'/armies/show'
     else
       erb :'not_authorized'
@@ -31,7 +31,7 @@ class ArmiesController < AppController
 
   #update route
   get '/armies/:id/edit' do
-    if is_logged_in? && my_army?
+    if authorized?
       set_army
       erb :'armies/army_edit'
     else
@@ -48,12 +48,13 @@ class ArmiesController < AppController
 
   #delete route
   delete '/armies/:id/delete' do
-    if is_logged_in? && my_army?
+    if authorized?
       set_army.delete
       redirect "/armies"
     end
   end
 
+#--------------------------HELPERS--------------------------------------------
   helpers do
     def set_army
       @army = Army.find_by_id(params[:id])
@@ -63,7 +64,11 @@ class ArmiesController < AppController
       set_army.user_id == current_user.id
     end
 
-  end
+    def authorized?
+      if is_logged_in? && my_army?
+    end
 
+  end
+#--------------------------/HELPERS--------------------------------------------
 
 end
