@@ -34,6 +34,8 @@ class ArmiesController < AppController
     if is_logged_in? && my_army?
       set_army
       erb :'armies/army_edit'
+    else
+      erb :'not_authorized'
     end
   end
 
@@ -49,6 +51,7 @@ class ArmiesController < AppController
     if is_logged_in? && my_army?
       set_army.delete
       redirect "/armies"
+    end
   end
 
   helpers do
