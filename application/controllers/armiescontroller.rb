@@ -10,6 +10,8 @@ class ArmiesController < AppController
     @army.user_id = current_user.id
     if @army.save
       redirect "/armies/#{@army.id}"
+    else
+      erb :'/armies/army_not_created'
     end
   end
 
